@@ -1,0 +1,27 @@
+{% extends "index_core.html" %}
+
+{% block content %}
+  <link rel="stylesheet" href="static/css/crime_stats_style.css">
+  <link rel="stylesheet" href="static/css/crime_stats_d3Style.css">
+  <style>
+  #scatter, svg {display: block; margin: auto}
+  </style>
+  <!-- <div class="container-fluid mt-5"> -->
+  <h1 style="align-content: center"  id="Title"></h1>
+  <h2 style="align-content: center"  id="subTitle"></h2>
+  <!-- <span style="align-content: center";> -->
+  <div class="container-fluid mt-5" style="align-content: center" id="scatter">
+          <!-- We append our chart here. -->
+  </div>
+  <!-- </span> -->
+  <!-- </div> -->
+  <script src='https://unpkg.com/simple-statistics@6.1.1/dist/simple-statistics.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+  <script type="text/javascript" src="static/js/crime_stats.js"></script>
+  <script>
+    // change link highlighting
+    
+    
+  </script>
+{% endblock %}

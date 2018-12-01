@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:\Users\benfraund\Documents\GitHub\LA_Crime\db\la_crime.db" foreign_keys="1"/><window><current_tab id="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="150"/><column_width id="3" width="15124"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="la_crime_incl_fbi_cat"/><default_encoding codec=""/><browsetable_info data="AAAABQAAABgAbgBlAHcAXwBsAGEAXwBjAHIAaQBtAGUAAAAAAAAAAAAAAAAAAAAAAAAAAAD//////////wAAAAD/////AAAAGABsAGEAXwB6AGkAcABfAHMAdABhAHQAcwAAAAAAAAAAAAAAAAAAAAAAAAAAAP//////////AAAAAP////8AAAAqAGwAYQBfAGMAcgBpAG0AZQBfAGkAbgBjAGwAXwBmAGIAaQBfAGMAYQB0AAAAAAAAAAAAAAAAAAAAAAAAAAAA//////////8AAAAA/////wAAABgAZgBiAGkAXwBjAGEAdABfAHQAbQBwADIAAAAAAAAAAAAAAAEAAAACAAAAlgAAAAAAAAAAAP//////////AAAAAP////8AAAAOAGYAYgBpAF8AYwBhAHQAAAADAAAAAAAAAAEAAAACAAAB2wAAAAAAAAAAAP//////////AAAAAP////8="/></tab_browse><tab_sql><sql name="FBI_Crime_Categories.sql">/*create table fbi_cat
+as select crm_cd, crm_cd_desc,
+(case when crm_cd &lt; 115 then &quot;Homicide&quot;
+	when crm_cd between 121 and 122 then &quot;Rape (121, 122)&quot;
+	when crm_cd in (815, 820, 821) then &quot;Rape (815,820,821)&quot;
+	when crm_cd between 210 and 220 then &quot;Robbery&quot;
+	when crm_cd between 230 and 239 then &quot;Aggravated Assault&quot;
+	when crm_cd between 310 and 329 then &quot;Burglary&quot;
+	when crm_cd between 510 and 520 then &quot;Motor Vehicle Theft&quot;
+	when crm_cd between 330 and 331 then &quot;BTFV&quot;
+	when crm_cd between 420 and 421 then &quot;BTFV&quot;
+	when crm_cd between 341 and 350 then &quot;Theft&quot;
+	when lower(crm_cd_desc) like &quot;%fraud%&quot; or lower(crm_cd_desc) like &quot;%embezzlement%&quot; then &quot;Embezzlement/Fraud&quot;
+	when crm_cd &gt;=440 and (lower(crm_cd_desc) like &quot;%theft%&quot; or lower(crm_cd_desc) like &quot;%stolen%&quot; or lower(crm_cd_desc) like &quot;%attempt%&quot;) then &quot;Personal/Other Theft&quot;
+	when lower(crm_cd_desc) like &quot;%theft%&quot; or lower(crm_cd_desc) like &quot;%stolen%&quot; then &quot;Theft&quot;
+	when lower(crm_cd_desc) like &quot;assault&quot; then &quot;Assault&quot;
+	else null end) as FBI_Category
+
+from new_la_crime;
+*/
+
+/*
+create table fbi_cat_tmp2
+as select crm_cd, crm_cd_desc, FBI_Category,
+(case when FBI_Category in(&quot;Homicide&quot;,&quot;Rape (121, 122)&quot;,&quot;Rape (815,820,821)&quot;,&quot;Robbery&quot;,&quot;Aggravated Assault&quot;) then &quot;Violent&quot;
+	when FBI_Category in(&quot;Burglary&quot;,&quot;Motor Vehicle Theft&quot;,&quot;BTFV&quot;,&quot;Personal/Other Theft&quot;) then &quot;Property&quot;
+	else &quot;Other&quot; end) as fbi_part_1
+from fbi_cat;
+*/
+-- drop table la_crime_incl_fbi_cat;
+
+create table la_crime_incl_fbi_cat
+as select
+dr_no,
+area_id,
+date_occ,
+date_rptd,
+longitude,
+latitude,
+mocodes,
+premis_cd,
+rpt_dist_no,
+status,
+hour_occ,
+minute_occ,
+vict_age,
+vict_descent,
+vict_sex,
+weapon_used_cd,
+fbi_part_1 
+from new_la_crime
+left join fbi_cat_tmp2
+on new_la_crime.crm_cd = fbi_cat_tmp2.crm_cd
+where fbi_part_1 !=&quot;Other&quot;
+group by 
+dr_no,
+area_id,
+date_occ,
+date_rptd,
+longitude,
+latitude,
+mocodes,
+premis_cd,
+rpt_dist_no,
+status,
+hour_occ,
+minute_occ,
+vict_age,
+vict_descent,
+vict_sex,
+weapon_used_cd,
+fbi_part_1 
+;
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
