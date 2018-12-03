@@ -178,17 +178,17 @@ def refresh_data():
     c = conn.cursor()
     c.execute('''drop table if exists new_ml_8_cat_crime_data''')
     c.execute('''create table new_ml_8_cat_crime_data as select
-                dr_no,
-                area_id,
-                date_occ,
-                date_rptd,
-                longitude,
-                latitude,
-                premis_cd,
-                rpt_dist_no,
-                hour_occ,
-                minute_occ,
-                vict_age,
+                cast(dr_no as INT) as dr_no,
+                cast(area_id as INT) as area_id,
+                cast(date_occ as INT) as date_occ,
+                cast(date_rptd as INT) as date_rptd,
+                cast(longitude as FLOAT64) as longitude,
+                cast(latitude as FLOAT64) as latitude,
+                cast(premis_cd as FLOAT64) as premis_cd,
+                cast(rpt_dist_no as INT) as rpt_dist_no,
+                cast(hour_occ as INT) as hour_occ,
+                cast(minute_occ as INT) as minute_occ,
+                cast(vict_age as FLOAT64) as vict_age,
                 FBI_Category,
                 cast((case when vict_descent is null then 1 else 0 end) as INT) as '-(vict_descent)',
                 cast((case when vict_descent = 'A' then 1 else 0 end) as INT) as 'A(vict_descent)',
@@ -764,7 +764,9 @@ def refresh_data():
     conn.close()
 
     fbi_8_crime_cat = pd.read_sql('''select * from new_ml_8_cat_crime_data''',con=sqlite3.connect("db/la_crime.db"))
-    fbi_crime_cln = fbi_8_crime_cat.dropna()
+    #fbi_crime_cln = fbi_8_crime_cat.dropna()
+    
+    fbi_crime_cln = pd.read_csv("fbi_crime_clean.csv")
 
     X = fbi_crime_cln.drop("FBI_Category", axis=1)
     y = fbi_crime_cln["FBI_Category"]
@@ -1532,7 +1534,12 @@ def data_sources():
     r"""Display the data sources"""
     
     return render_template("data_sources.html",xpage="Data Sources")
-
+    
+@app.route("/glossary")
+def glossary():
+    r"""Display the glossary"""
+    
+    return render_template("glossary.html",xpage="Glossary")
 
 @app.route("/crime_stats/get_data")
 def state_stats_get_data():

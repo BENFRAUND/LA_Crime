@@ -44,6 +44,12 @@
           <li id="stats-link" class="nav-item">
             {% endif %}
             <a class="nav-link" href="data_sources">Data Sources</a>
+          {% if xpage == "Glossary" %}
+          <li id="stats-link" class="nav-item active">
+            {% else %}
+          <li id="stats-link" class="nav-item">
+            {% endif %}
+            <a class="nav-link" href="glossary">Glossary</a>
           </li>
          </ul>
       </div>
