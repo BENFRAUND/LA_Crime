@@ -18,22 +18,26 @@ function buildMetadata() {
       // Use `.html("") to clear any existing metadata and gauge
       metaPanel.html("");
 
-    // Use `Object.entries` to add each key and value pair to the panel
-    // Hint: Inside the loop, you will need to use d3 to append new
-    // tags for each key-value in the metadata.  
-      // Object.entries(metaData).metaPanel.insert(`<tr>Name: ${name}`);
       d3.select("#sample-metadata")
-        .html(`<h3>${metaData.crm_cd_desc}<h3>
-               <h5>Area: ${metaData.area_name}<br>
-               Location: ${metaData.location}<br>
-               Cross Street: ${metaData.cross_street}<br>
-               Date: ${metaData.date_occ.slice(0,16)}<br>
-               Hour: ${metaData.hour_occ}<br>
-               Weapon Used: ${metaData.weapon_desc}<br>
-               `);
+        .html(`<h5>Police reported a ${metaData.crm_cd_desc.toLowerCase()} occurred at ${metaData.location} in the ${metaData.area_name}
+                area on ${metaData.date_occ}.  The following modus operandi were described in the police report: ${metaData.mocodes.replace('["','<br><ul><li>')
+                                                                                                                  .replace('", "','<li>')
+                                                                                                                  .replace('", "','<li>')
+                                                                                                                  .replace('", "','<li>')
+                                                                                                                  .replace('", "','<li>')
+                                                                                                                  .replace('", "','<li>')
+                                                                                                                  .replace('", "','<li>')
+                                                                                                                  .replace('", "','<li>')
+                                                                                                                  .replace('", "','<li>')
+                                                                                                                  .replace('", "','<li>')
+                                                                                                                  .replace('"]','</ul>')}
+              
+                This crime is reportable to the FBI as a ${metaData.FBI_Category.toLowerCase()}. The deep neural net model predicted this
+                 as a ${metaData.FBI_Cat_Prediction} based on evidence in the police report other than the crime code or weapon.</h5>
+                `);
 
       d3.select("#sitemap_title").html(`Sattelite View: ${metaData.location}`);
-      d3.select("#tableTitle").html(`LA Crime Detail`);
+      d3.select("#tableTitle").html(`${metaData.crm_cd_desc}`);
    
       });
 }

@@ -47,7 +47,7 @@ vict_age,
 vict_descent,
 vict_sex,
 FBI_Category 
-from hist_la_crime
+from ml_la_crime
 left join fbi_cat_tmp2
 on hist_la_crime.crm_cd = fbi_cat_tmp2.crm_cd
 where fbi_part_1 !="Other"

@@ -10,11 +10,13 @@ d3.json("/crime_sites", function (data) {
     data.area_name = sqlitedata.area_name;
     data.location = sqlitedata.location;
     data.cross_street = sqlitedata.cross_street;
-    data.date_occ = sqlitedata.date_occ;
+    data.date_occ = +sqlitedata.date_occ;
     data.hour_occ = +sqlitedata.hour_occ;
     data.latitude = +sqlitedata.latitude;
     data.longitude = +sqlitedata.longitude;
     data.dr_no = +sqlitedata.dr_no;
+    data.fbi_cat = sqlitedata.FBI_Category;
+    data.predict_cat = sqlitedata.FBI_Cat_Prediction;
     crimeSites.push(
       L.circleMarker([data.latitude, data.longitude],
         {
@@ -26,7 +28,7 @@ d3.json("/crime_sites", function (data) {
           weight: .5
         }
         //,{ icon: L.BeautifyIcon.icon(options) }
-      ).bindPopup(data.crm_cd_desc.bold() + "<br>" + data.location + "<br>" + data.area_name + " Area" + "<br>" + data.date_occ.slice(0,16) + " @ " + data.hour_occ + ":00" + "<br>DivRec#: " + data.dr_no.toString().bold()));
+      ).bindPopup(data.crm_cd_desc.bold() + "<br>" + data.fbi_cat.bold() + " (actual category)<br>" + data.predict_cat.bold() + " (predicted category)<br>" + data.location + "<br>" + data.area_name + " Area" + "<br>" + data.date_occ.toString().slice(0,16) + " @ " + data.hour_occ + ":00" + "<br>DR#: " + data.dr_no.toString().bold()));
   });
 
   var zipEmploymentRateChloro;
@@ -200,12 +202,12 @@ function createMap(crimeSites,
   };
 
   var overlayMapsAsBase = {
-    "Nothing": emptyLayer,
     "Employment Rate": zipEmploymentRateChloro,
     "Median Income": zipIncomeChloro,
     "Neighborhood Deprivation": zipADIChloro,
     "Deaths per 1,000 Pop": zipDeathsChloro,
-    "Opioid Rx per 1,000 Pop": zipOpioidRxChloro
+    "Opioid Rx per 1,000 Pop": zipOpioidRxChloro,
+    "Nothing": emptyLayer
   };
 
   // Creating map object and set default layers
