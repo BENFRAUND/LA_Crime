@@ -1,0 +1,14 @@
+                      precision    recall  f1-score   support
+
+ Motor Vehicle Theft       0.82      0.92      0.87       155
+Personal/Other Theft       0.88      0.70      0.78       314
+            Burglary       0.83      0.51      0.63       117
+  Aggravated Assault       0.00      0.00      0.00         6
+                BTFV       0.78      0.97      0.87       175
+             Robbery       0.72      0.90      0.80       284
+     Rape (121, 122)       0.83      0.83      0.83        12
+            Homicide       0.91      0.80      0.85       187
+
+           micro avg       0.81      0.81      0.81      1250
+           macro avg       0.72      0.71      0.70      1250
+        weighted avg       0.82      0.81      0.80      1250
