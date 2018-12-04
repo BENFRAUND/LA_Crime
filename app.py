@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import pandas as pd
 from datetime import date
 import requests
@@ -1685,4 +1683,4 @@ def sample_metadata(dr_no):
     
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
