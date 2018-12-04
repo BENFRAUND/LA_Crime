@@ -12,6 +12,9 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 import numpy as np
+import keras
+from keras import backend as K
+from keras.models import load_model
 
 app = Flask(__name__)
 CORS(app)
@@ -27,6 +30,16 @@ LACrime = Base.classes.new_la_crime_incl_modesc
 ZipCombinedStats = Base.classes.la_zip_stats
 # LARealEstateStats = Base.classes.la_real_estate
 
+crime_model = None
+graph = None
+
+def load_model():
+    global crime_model
+    global graph
+    crime_model = keras.models.load_model("ml_model/DeepNN_model/fbi_category_model_trained.h5")
+    graph = K.get_session().graph
+
+load_model()
 
 @app.route("/")
 def index():
@@ -764,12 +777,15 @@ def refresh_data():
     conn.close()
 
     fbi_8_crime_cat = pd.read_sql('''select * from new_ml_8_cat_crime_data''',con=sqlite3.connect("db/la_crime.db"))
-    #fbi_crime_cln = fbi_8_crime_cat.dropna()
+    fbi_crime_cln = fbi_8_crime_cat.dropna()
     
-    fbi_crime_cln = pd.read_csv("fbi_crime_clean.csv")
+    #fbi_crime_cln = pd.read_csv("fbi_crime_clean.csv")
 
     X = fbi_crime_cln.drop("FBI_Category", axis=1)
     y = fbi_crime_cln["FBI_Category"]
+
+    #print("printing X,y")
+    #print(X, y)
     
     from sklearn.preprocessing import LabelEncoder, StandardScaler
     from keras.utils import to_categorical
@@ -786,14 +802,19 @@ def refresh_data():
     y_categorical = to_categorical(encoded_y)
 
     # Load the DeepNN_model
-    from keras.models import load_model
-    crime_model = load_model("ml_model/DeepNN_model/fbi_category_model_trained.h5")
-    model_loss, model_accuracy = crime_model.evaluate(
-    X_scaled, y_categorical, verbose=2)
+    #from keras.models import load_model
+    #crime_model = load_model("ml_model/DeepNN_model/fbi_category_model_trained.h5")
+    #model_loss, model_accuracy = crime_model.evaluate(
+    #X_scaled, y_categorical, verbose=2)
 
     # Make FBI crime category predictions using trained model
-    encoded_predictions = crime_model.predict_classes(X_scaled)
-    prediction_labels = label_encoder.inverse_transform(encoded_predictions)
+
+
+    global graph
+    with graph.as_default():
+        encoded_predictions = crime_model.predict_classes(X_scaled)
+        prediction_labels = label_encoder.inverse_transform(encoded_predictions)
+    
     dr_no = fbi_crime_cln['dr_no'].tolist()
 
     # Create dictionary and populate it wth dr_no (key) and prediction_labels (values)
@@ -1459,10 +1480,10 @@ def refresh_data():
     # Create new_la_crime_incl_modesc table
     from sqlalchemy import create_engine
     from sqlalchemy.types import Integer, Date
-    engine = create_engine('sqlite:///../../db/la_crime.db')
-    new_la_crime_incl_pred.to_sql('new_la_crime_incl_modesc', engine, if_exists='replace', dtype={"date_occ": Date(), "date_rptd": Date()})
+    engine = create_engine('sqlite:///db/la_crime.db')
+    new_la_crime_incl_pred.to_sql('new_la_crime_w_desc', engine, if_exists='replace', dtype={"date_occ": Date(), "date_rptd": Date()})
 
-    conn = sqlite3.connect("../../db/la_crime.db")
+    conn = sqlite3.connect("db/la_crime.db")
     c = conn.cursor()
     c.execute('''DROP TABLE new_la_crime_incl_modesc''')
     c.execute('''CREATE TABLE new_la_crime_incl_modesc

@@ -24,13 +24,13 @@
           {% endif %}  
             <a class="nav-link" href="map">LA Crime Map</span></a>
           </li>
-          {% if xpage == "crime stats" %}
+          <!-- {% if xpage == "crime stats" %}
           <li id="stats-link" class="nav-item active">
           {% else %}
           <li id="stats-link" class="nav-item">
           {% endif %}  
             <a class="nav-link" href="crime_stats">Crime Stats</a>
-          </li>
+          </li> -->
           {% if xpage == "Data" %}
           <li id="stats-link" class="nav-item active">
           {% else %}
@@ -50,6 +50,13 @@
           <li id="stats-link" class="nav-item">
             {% endif %}
             <a class="nav-link" href="glossary">Glossary</a>
+          </li>
+          {% if xpage == "Refresh Data" %}
+          <li id="stats-link" class="nav-item active">
+            {% else %}
+          <li id="stats-link" class="nav-item">
+            {% endif %}
+            <a class="nav-link" href="/new_la_crime_data">Refresh Data</a>
           </li>
          </ul>
       </div>
