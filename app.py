@@ -1555,12 +1555,25 @@ def data_sources():
     r"""Display the data sources"""
     
     return render_template("data_sources.html",xpage="Data Sources")
+<<<<<<< HEAD
+
+=======
     
+>>>>>>> f3fb6d284f7c3d96dc2c21c7be032449a4617559
 @app.route("/glossary")
 def glossary():
     r"""Display the glossary"""
     
     return render_template("glossary.html",xpage="Glossary")
+<<<<<<< HEAD
+
+@app.route("/mo_codes")
+def mo_codes():
+    r"""Display the mo_codes"""
+    
+    return render_template("mo_codes.html",xpage="MO Codes")
+=======
+>>>>>>> f3fb6d284f7c3d96dc2c21c7be032449a4617559
 
 @app.route("/crime_stats/get_data")
 def state_stats_get_data():
