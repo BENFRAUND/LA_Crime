@@ -1560,6 +1560,12 @@ def glossary():
     
     return render_template("glossary.html",xpage="Glossary")
 
+@app.route("/mo_codes")
+def mo_codes():
+    r"""Display the mo_codes"""
+    
+    return render_template("mo_codes.html",xpage="MO Codes")
+
 @app.route("/crime_stats/get_data")
 def state_stats_get_data():
 
