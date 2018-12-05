@@ -51,6 +51,13 @@
             {% endif %}
             <a class="nav-link" href="glossary">Glossary</a>
           </li>
+          {% if xpage == "MO Codes" %}
+          <li id="stats-link" class="nav-item active">
+            {% else %}
+          <li id="stats-link" class="nav-item">
+            {% endif %}
+            <a class="nav-link" href="mo_codes">MO Codes</a>
+          </li>          
           {% if xpage == "Refresh Data" %}
           <li id="stats-link" class="nav-item active">
             {% else %}
