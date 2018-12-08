@@ -1,0 +1,53 @@
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 1000;
+    height: 900;
+    position: relative;
+}
+svg {
+    width: 100%;
+    height: 100%;
+    position: center;
+}
+text{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.toolTip {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    position: absolute;
+    display: none;
+    width: auto;
+    height: auto;
+    background: none repeat scroll 0 0 white;
+    border: 0 none;
+    border-radius: 8px 8px 8px 8px;
+    box-shadow: -3px 3px 15px #888888;
+    color: black;
+    font: 16px sans-serif;
+    padding: 5px;
+    text-align: center;
+}
+.legend {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 100%;
+}
+text {
+    font: 14px sans-serif;
+}
+.axis text {
+    font: 14px sans-serif;
+    font-weight: bolder;
+}
+.axis path{
+    fill: none;
+    stroke: #000;
+}
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+.x.axis path {
+    display: none;
+}

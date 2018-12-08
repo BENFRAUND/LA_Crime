@@ -1,0 +1,80 @@
+{% extends "index_core.html" %}
+{% block content %}
+
+     <!-- Google Font -->
+     <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+
+     <!-- Leaflet CSS -->
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+     integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+     crossorigin=""/>
+     
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/css/map_style.css">
+    <style type="text/css">
+         .jumbotron {
+           background-image: url("https://cdn.cnn.com/cnnnext/dam/assets/150513171432-04-lapd-1953-tbt-0514-super-169.jpg");
+           background-size: cover;
+           background-position: center center;
+           background-repeat: no-repeat;
+           font-family: 'Roboto Mono', monospace;
+           font-weight: bolder;
+           font-size-adjust: inherit;
+           color: black;
+           text-shadow: 4px 4px 8px rgb(121, 13, 13);
+           height: 250px;
+           padding: 40;
+           margin: 40px 000;
+           }
+     </style>
+
+       <div class="container">
+         <div class="row">
+           <div class="col-md-12 jumbotron center-cropped text-center">
+             <h1>Los Angeles Crime Story</h1>
+           </div>
+         </div>
+         <div class="row">
+           <div class="col-md-6">
+             <div class="well">
+               <h5>SELECT Crime ID:</h5>
+               <select id="selDataset" onchange="optionChanged(this.value)" style="max-width:90%;"></select>
+             </div>
+             <div class="panel panel-primary">
+               <br>
+               <div class="panel-heading">
+                 <h3 class="panel-title" id="tableTitle">Current Crime Detail</h3>
+               </div>
+               <div id="sample-metadata" class="panel-body" style="font-size: 9pt; font-weight: bold;"></div>
+             </div>
+           </div>
+           <div class="col-md-6 mapcontainer">
+             <h3 id="sitemap_title"></h3>
+                   <div id="sitemap"></div> 
+               </div>
+           </div>
+         </div>
+     <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script>
+     
+     <!-- D3 -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+
+     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script> -->
+     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+     <!-- Leaflet JavaScript -->
+     <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+     integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+     crossorigin=""></script>
+     
+     <!-- polyfill.io is library for using newer JavaScript features in older browers (such as Object.assign) -->
+     <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+     
+     <!-- API Key -->
+     <script type="text/javascript" src="static/js/config.js"></script>
+     
+     <!-- My JS-->
+     <script type="text/javascript" src="static/js/dashboard.js"></script>
+
+
+{% endblock %}

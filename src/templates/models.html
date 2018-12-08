@@ -1,0 +1,115 @@
+{% extends "index_core.html" %}
+{% block content %}
+
+
+<link href="https://unpkg.com/tabulator-tables@4.0.5/dist/css/tabulator.min.css" rel="stylesheet">
+<script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.0.5/dist/js/tabulator.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+
+<div class="container-fluid mt-5">
+        <div class="animated fadeIn">
+            <div class="row mb-2">
+                <div class="col-md-12 text-center">       
+                    <h2>Machine Learning Models</h2><br/>
+                    <br/>
+                    <ul>The backend for this website is using the Deep Neural Network model which provided an <b>87% accuracy</b> <br/>
+                        on the 8 crime categories (Homicide, Rape, Robbery, Aggravated Assault, Burglary, BTVF, and Other Theft).<br/>
+                        <br/>
+                        Using 1-10% of data used in the DNN model, we experimented with several models to determine the <br/>
+                        classification of 2 categories (Violent Crimes vs. Property Crimes) and the 8 categories mentioned.
+                    </ul>
+                    <br/>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-10">
+                    <ul>
+                    <li>
+                        <b>Summary: </b>
+                        <br/>
+                        <ul><li> The result for classifying into 2 categories violent crimes vs. property crimes: <br/>
+                        <img src="../static/summary.png" class="center" /></li><br/>
+                        <li>The result for classifying into 8 categories Homicide, Rape, Robbery, Aggravated <br/>
+                            Assault, Burglary, BTVF, and Other Theft: <br/>
+                        <img src="../static/summary_8.png" class="center" /></li><br/>
+                    </li></ul>
+                    </li>
+
+                    <li>
+                        <b>Logistic Regression: </b><br/>
+                        <br/>
+                        <img src="../static/lr_heatmap.png" class="center" />
+                        <img src="../static/lr_heatmap_8.png" class="center"/>
+                        </p><br/>
+                    </li>
+
+                    <li>
+                        <b>k-Nearest Neighbors: </b><br/>
+                        <br/>
+                        <p>
+                        <img src="../static/knn_heatmap.png" class="center" />
+                        <img src="../static/knn_heatmap_8.png" class="center"/>
+                        </p><br/>
+                    </li>
+
+                    <li>
+                        <b>Support Vector Machines: </b><br/>
+                        <br/>
+                        <p>
+                        <img src="../static/svm_heatmap.png" class="center;" />
+                        <img src="../static/svm_heatmap_8.png" class="center;"/>
+                        </p><br/>
+                    </li>
+
+                    <li>
+                        <b>Random Forest: </b><br/>
+                        <br/>
+                        <p>
+                        <img src="../static/rf_heatmap.png" class="center" />
+                        <img src="../static/rf_heatmap_8.png" class="center"/>
+                        </p><br/>
+                    </li>
+
+                    <li>
+                        <b>Decision Tree: </b><br/>
+                        <br/>
+                        <p>
+                        <img src="../static/g9_heatmap.png" class="center;" />
+                        <img src="../static/g9_heatmap_8.png" class="center;"/>
+                        </p><br/>
+                    </li>
+
+                    <li>
+                        <b>Gaussian Naive-Bayes: </b><br/>
+                        <br/>
+                        <p>
+                        <img src="../static/gaus_heatmap.png" class="center;" />
+                        <img src="../static/gaus_heatmap_8.png" class="center;"/>
+                        </p><br/>
+                    </li>
+
+                        </ul>
+                    </li>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12 text-left">       
+                    <h6>Project 3 - USC Data Bootcamp: </h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                  <ul>
+                    <li><a href="https://github.com/BENFRAUND"> Ben Fraund </a></li>
+                    <li><a href="https://github.com/jwu047"> Jason Wu </a></li>
+                    <li><a href="https://github.com/bagussoeprapto"> Dimas Soeprapto </a></li>
+
+                  </ul>
+                </div>
+            </div>
+
+        </div>
+</div>
+{% endblock %}

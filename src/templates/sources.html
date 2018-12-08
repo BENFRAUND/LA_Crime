@@ -1,0 +1,72 @@
+{% extends "index_core.html" %}
+{% block content %}
+
+
+<link href="https://unpkg.com/tabulator-tables@4.0.5/dist/css/tabulator.min.css" rel="stylesheet">
+<script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.0.5/dist/js/tabulator.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+
+<div class="container-fluid mt-5">
+        <div class="animated fadeIn">
+            <div class="row mb-2">
+                <div class="col-md-12 text-center">       
+                    <h2>Data Sources</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul>
+                    <li>Crime Data: 
+                        <ul>
+                            <li>Los Angeles Crime Data: 
+                                <a href="https://data.lacity.org/A-Safe-City/Crime-Data-from-2010-to-Present/y8tr-7khq">https://data.lacity.org/A-Safe-City/Crime-Data-from-2010-to-Present/y8tr-7khq</a>
+                            </li>
+                            <li>LAPD Crime Statistics Glossary: <a href="http://www.lapdonline.org/inside_the_lapd/content_basic_view/27333">http://www.lapdonline.org/inside_the_lapd/content_basic_view/27333</a>
+                            </li>
+                            <li>FBI Uniform Crime Reporting (UCR) Definitions: <a href="https://www.ucrdatatool.gov/offenses.cfm">https://www.ucrdatatool.gov/offenses.cfm</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <br>
+                    <li>Los Angeles Zip Code Statistics (for map choropleth): </li>
+                        <ul>
+                            <li>US Census Bureau (Employement Rate, Median Income):
+                                <a href="https://factfinder.census.gov/bkmk/table/1.0/en/DEC/10_SF1/GCTPH1.US01PR/0100000US">https://factfinder.census.gov/bkmk/table/1.0/en/DEC/10_SF1/GCTPH1.US01PR/0100000US</a>
+                            </li>
+                            <li>Centers for Disease Control (Deaths per 1,000 Population):
+                                <a href="https://www.cdc.gov/nchs/fastats/homicide.htm">https://www.cdc.gov/nchs/fastats/homicide.htm</a>
+                            </li>
+                            <li>Neighborhood Deprivation Index (University of Wisconsin School of Medicine):
+                                <a href="https://www.neighborhoodatlas.medicine.wisc.edu">https://www.neighborhoodatlas.medicine.wisc.edu</a>
+                            </li>
+                            <li>CA Controlled Substance Utilization Review and Evaluation System (Opioid Rx per 1,000 Population):
+                                <a href="https://www.mbc.ca.gov/Licensees/Prescribing/CURES/">https://www.mbc.ca.gov/Licensees/Prescribing/CURES/</a>
+                        </li>
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12 text-center">       
+                    <h2>Technology</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                  <ul>
+                    <li>Backend and API: Python/Flask/Tensorflow</li>
+                    <li>Predictive Model: Keras/Scikit</li>
+                    <li>Database: SQLite3</li>
+                    <li>HTML/Styles: Bootstrap 4.1</li>
+                    <li>Maps: Leaflet.js</li>
+                    <li>Tables: <a href="http://tabulator.info/"><b>Tabulator</b></a>, D3.js</li>
+                    <!-- <li>Scatter plot: D3.js, <a href="https://simplestatistics.org/">Simple Statistics</a></li> -->
+                    <li>Misc: jQuery</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+</div>
+{% endblock %}
